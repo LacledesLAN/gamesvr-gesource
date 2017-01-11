@@ -1,0 +1,8 @@
+FROM lacledeslan/gamesvr-srcds:linux
+
+MAINTAINER Laclede's LAN <contact@lacledeslan.com>
+
+ENV SERVER_NAME="gamesvr-srcds-gesource:linux"
+
+WORKDIR /app/bin/
+
