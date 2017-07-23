@@ -1,8 +1,52 @@
+# escape=`
+
 FROM lacledeslan/gamesvr-srcds:linux
 
-MAINTAINER Laclede's LAN <contact@lacledeslan.com>
+LABEL maintainer "Laclede's LAN <contact@lacledeslan.com>"
 
-ENV SERVER_NAME="gamesvr-srcds-gesource:linux"
+ENV IMAGE="gamesvr-srcds-gesource:linux"
+
+HEALTHCHECK NONE
+
+# Set up user
+RUN useradd `
+		--home /app/bin `
+		--gid srcds `
+		--shell /bin/bash `
+		--system `
+		GESOURCE &&`
+	chown -R GESOURCE:srcds /app/bin
+
+USER GESOURCE
+
+# Copy files (if any) from the build-cache
+COPY ./build-cache/ /app/bin/
+
+# Install Source 2007 Dedicated Server
+RUN echo "Downloading Source 2007 Dedicated Server via SteamCMD" &&`
+		/app/steamcmd/steamcmd.sh `
+			+login anonymous `
+			+force_install_dir /app/bin/ `
+			+app_update 310 validate `
+			+quit
+
+# Install GoldenEye Source server files
+RUN echo "Downloading GoldenEye Source from LL public ftp server" &&`
+		mkdir --parents /tmp/gesource/ &&`
+		cd /tmp/gesource/ &&`
+		wget -m `
+			ftp://llgameserverbot:6gDyfNJhm4UsraE5@raw.content.lacledeslan.net/_installers/gesource/GoldenEye_Source_v5.0.1_full_server_linux.tar.1.bz2 `
+			-nH --cut-dirs 2 --no-verbose &&`
+	echo "Extracting GoldenEye Source files" &&`
+		tar jxf *.tar*bz2 &&`
+		rm -f /tmp/gesource/*.tar*bz2 &&`
+	echo "Moving extracted files to destination" &&`
+		mv /tmp/gesource/gesource /app/bin/ &&`
+	echo "Performing Cleanup" &&`
+		rm -rf /tmp/gesource;
 
 WORKDIR /app/bin/
 
+CMD ["/bin/bash"]
+
+ONBUILD USER root
