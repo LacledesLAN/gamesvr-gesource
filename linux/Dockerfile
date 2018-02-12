@@ -48,9 +48,11 @@ RUN useradd --home /app --gid root --system GESource &&`
     mkdir -p /app/ll-tests &&`
     chown GESource:root -R /app;
 
-COPY --chown=GESource:root --from=gesource-builder  /output/gesource /app
+COPY --chown=GESource:root --from=gesource-builder /output/gesource /app
 
-COPY --chown=GESource:root --from=gesource-builder  /output/srcds2007 /app
+COPY --chown=GESource:root --from=gesource-builder /output/srcds2007 /app
+
+COPY --chown=GESource:root ./ll-tests /app/ll-tests
 
 USER GESource
 
