@@ -30,3 +30,6 @@ deploy:
   script: docker push lacledeslan/gamesvr-gesource
   on:
     branch: master
+after_deploy:
+ - curl -X POST https://hooks.microbadger.com/images/lacledeslan/gamesvr-gesource/$MICROBADGER_TOKEN
+ 
