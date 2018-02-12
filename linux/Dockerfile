@@ -12,15 +12,11 @@ RUN echo "Downloading GoldenEye Source from LL public ftp server" &&`
     echo "Validating download against known hash" &&`
         echo "79643189e9d6549e13ed9545d2277cb34bac05fff645d44d9de1f0ab030610d3 /tmp/gesource-server.7z" | sha256sum -c - &&`
 	echo "Extracting GoldenEye Source files" &&`
-		7z x -o/tmp/ /tmp/gesource-server.7z &&`
-		rm -f /tmp/*.7z &&`
-	echo "Moving extracted files to destination" &&`
-		mv /tmp/gesource /output/ &&`
-	echo "Performing Cleanup" &&`
-		rm -rf /tmp/gesource;
+		7z x -o/output/ /tmp/gesource-server.7z &&`
+		rm -f /tmp/*.7z
 
 # Download Source 2007 Dedicated Server
-RUN /app/steamcmd.sh +login anonymous +force_install_dir /output +app_update 310 validate +quit;
+RUN /app/steamcmd.sh +login anonymous +force_install_dir /output/srcds2007 +app_update 310 validate +quit;
 
 #=======================================================================
 FROM debian:stable-slim
@@ -52,7 +48,9 @@ RUN useradd --home /app --gid root --system GESource &&`
     mkdir -p /app/ll-tests &&`
     chown GESource:root -R /app;
 
-COPY --chown=GESource:root --from=gesource-builder  /output /app
+COPY --chown=GESource:root --from=gesource-builder  /output/gesource /app
+
+COPY --chown=GESource:root --from=gesource-builder  /output/srcds2007 /app
 
 USER GESource
 
