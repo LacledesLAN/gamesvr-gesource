@@ -54,6 +54,8 @@ COPY --chown=GESource:root --from=gesource-builder /output/srcds2007 /app
 
 COPY --chown=GESource:root ./ll-tests /app/ll-tests
 
+RUN chmod +x /app/ll-tests/*.sh
+
 USER GESource
 
 WORKDIR /app
