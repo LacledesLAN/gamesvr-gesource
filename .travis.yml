@@ -17,7 +17,7 @@ before_install:
 script:
   - docker version
   - docker build --no-cache --tag lltest/gamesvr-gesource --tag lacledeslan/gamesvr-gesource --build-arg BUILDNODE=TravisCI --build-arg SOURCE_COMMIT="$TRAVIS_COMMIT" ./linux
-  - docker run -it --rm lltest/gamesvr-gesource ./ll-tests/steamcmd.sh
+  - docker run -it --rm lltest/gamesvr-gesource ./ll-tests/gamesvr-gesource.sh
 
 notifications:
   slack:
