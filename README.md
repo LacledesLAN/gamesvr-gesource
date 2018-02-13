@@ -2,6 +2,8 @@
 
 GoldenEye: Source is an online multiplayer arena first-person shooter that aims to provide a faithful and also expanded re-creation of GoldenEye 007's multiplayer including additional game modes, re-creations of single-player levels that were not originally accessible in GoldenEye 007's multiplayer modes, and weapons which were only accessible using cheats.
 
+[![GoldenEye Source Trailer](https://raw.githubusercontent.com/LacledesLAN/gamesvr-gesource/master/.misc/video-thumb.jpg)](https://www.youtube.com/watch?v=-E4XtdEnWx4)
+
 ## Linux Container
 
 [![Build Status](https://travis-ci.org/LacledesLAN/gamesvr-gesource.svg?branch=master)](https://travis-ci.org/LacledesLAN/gamesvr-gesource)
