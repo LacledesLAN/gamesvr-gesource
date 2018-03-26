@@ -2,13 +2,15 @@
 
 FROM lacledeslan/steamcmd:linux as gesource-builder
 
+ARG ftpServer=content.lacledeslan.net
+
 # Copy cached build files (if any)
 COPY ./build-cache /output
 
 # Download GoldenEye Source server files
 RUN echo "Downloading GoldenEye Source from LL public ftp server" &&`
         mkdir --parents /tmp/ &&`
-		curl -sSL "http://raw.content.lacledeslan.net/fastDownloads/_installers/gesource-5.0.6server.7z" -o /tmp/gesource-server.7z &&`
+		curl -sSL "http://${ftpServer}/fastDownloads/_installers/gesource-5.0.6server.7z" -o /tmp/gesource-server.7z &&`
     echo "Validating download against known hash" &&`
         echo "79643189e9d6549e13ed9545d2277cb34bac05fff645d44d9de1f0ab030610d3 /tmp/gesource-server.7z" | sha256sum -c - &&`
 	echo "Extracting GoldenEye Source files" &&`
