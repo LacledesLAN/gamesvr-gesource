@@ -24,7 +24,7 @@ notifications:
     secure: fZ8ZdFwKVfPSi72oBUJ9GZ6lMMY/ZqukYt5PHcB2ZyD7AZ81sLsbAnJVJ9Q7J/NxPJ19go81uUq5qRz7ugAmjfHmTK3In/c4YOaPom68/08HA38RsEKVPlt3FJFTe0IgQYhCDaNHT0iG55Kkqujizf9HJwpAyomrMoFOaCntD88T2XyQFkzs5wOVXfJW6v/FTabvg0FWtQ55QtCyYEmMCkknEyYNZWBUC8igbx7B/OKDUpCLifCohzjXIlmxAGvyjKtLRmm8qE7B6GdjVD9z+MJCP8ofoKimxAUKI3dB+wvPsbGeAS5qAHULADpPR5vHmCJ/EGkae1RWqSBaXJ9/KPSadA3oKMW3K0PgKWCv4cYZCx0Uv9LKdhnFR+SjtIX/3JX8JbBzbhfHhvW/JuSWg2aqnb7PrT5pu1sKgD80h2AoGj/gNxQkaOi+93BMWnCzWs1AazMAK2mKdTtdYFHTtyigIrX+k30KeUnIo53UQoS3SXpWxu/D5fWQTBAcMCc5rO1ESlk1VSFUk++VWYzyMJHnOkdS7+IugFB4cxtsSGYzjVVGXbOvuLfapj4+3EcI6THpNt0reTiWVUqSpDVUiW2tJfNUwieJBYO2x21sy0A1hXHanfp8y5OoatVy0l7jZxKlBCH9rSgvONIoBmb4HphiHaBv6LBWXKbqB2i+1jI=
 
 before_deploy:
-  - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS";
+  - echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin;
 deploy:
   provider: script
   script: docker push lacledeslan/gamesvr-gesource
