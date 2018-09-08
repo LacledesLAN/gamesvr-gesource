@@ -24,5 +24,5 @@ docker run --rm lacledeslan/gamesvr-gesource ./ll-tests/gamesvr-gesource.sh
 ### Run Simple, Interactive Server
 
 ```shell
-docker run -it --rm --net=host lacledeslan/gamesvr-gesource /bin/bash -c "export MALLOC_CHECK_=0 && ./srcds_run -game ge_depot +map ge_archives +sv_lan 1 +maxplayers 16"
+docker run -it --rm --net=host lacledeslan/gamesvr-gesource /bin/bash -c "export MALLOC_CHECK_=0 && ./srcds_run -game gesource +map ge_depot +sv_lan 1 +maxplayers 16"
 ```
