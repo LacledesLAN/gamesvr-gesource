@@ -1,6 +1,6 @@
 # Contributing
 
-First off, thank you for considering contributing to `gamesvr-srcds-gesource`. It's people like you that make Laclede's LAN such a great community.
+First off, thank you for considering contributing to `gamesvr-gesource`. It's people like you that make Laclede's LAN such a great community.
 
 ## Did you find a bug or have questions?
 

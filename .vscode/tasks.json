@@ -25,5 +25,23 @@
             "problemMatcher": [],
             "promptOnClose": true
         },
+        {
+            "label": "Build & Run Interactive Server",
+            "type": "shell",
+            "command": "docker run -it --net=host lltest/gamesvr-gesource /bin/bash -c 'export MALLOC_CHECK_=0 && /app/srcds_run -game gesource +map ge_caves -insecure -norestart +sv_lan 1 +rcon_password test123'",
+            "dependsOn": "build-image",
+            "group": "build",
+            "problemMatcher": [],
+            "promptOnClose": true
+        },
+        {
+            "label": "Build & Shell In",
+            "type": "shell",
+            "command": "docker run -it --net=host --rm lltest/gamesvr-gesource;",
+            "dependsOn": "build-image",
+            "group": "build",
+            "problemMatcher": [],
+            "promptOnClose": true
+        },
     ]
 }
