@@ -14,7 +14,7 @@ This repository is maintained by [Laclede's LAN](https://lacledeslan.com). Its c
 ### Download
 
 ```shell
-docker pull lacledeslan/gamesvr-srcds-gesource:linux
+docker pull lacledeslan/gamesvr-gesource
 ```
 
 ### Run Self Tests
