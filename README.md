@@ -19,6 +19,9 @@ docker pull lacledeslan/gamesvr-gesource
 
 ### Run Self Tests
 
+The image includes a test script that can be used to verify its contents. No changes or pull-requests will be accepted to this repository if any tests fail.
+
+
 ```shell
 docker run --rm lacledeslan/gamesvr-gesource ./ll-tests/gamesvr-gesource.sh
 ```
