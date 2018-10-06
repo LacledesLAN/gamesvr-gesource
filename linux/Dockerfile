@@ -47,7 +47,7 @@ LABEL com.lacledeslan.build-node=$BUILDNODE `
 
 # Set up Enviornment
 RUN useradd --home /app --gid root --system GESource &&`
-    mkdir -p /app/gesource/addons/sourcemod/logs &&`
+    mkdir -p /app/gesource/logs &&`
     mkdir -p /app/ll-tests &&`
     chown GESource:root -R /app;
 
