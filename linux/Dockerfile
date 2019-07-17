@@ -21,7 +21,7 @@ RUN echo "Downloading GoldenEye Source from LL public ftp server" &&`
 RUN /app/steamcmd.sh +login anonymous +force_install_dir /output/srcds2007 +app_update 310 validate +quit;
 
 #=======================================================================
-FROM debian:stable-slim
+FROM debian:stretch-slim
 
 ARG BUILDNODE=unspecified
 ARG SOURCE_COMMIT=unspecified
