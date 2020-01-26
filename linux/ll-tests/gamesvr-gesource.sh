@@ -1,7 +1,5 @@
 #!/bin/bash -i
 
-export MALLOC_CHECK_=0  #Hack required by GESource to run
-
 #####################################################################################################
 ### CONFIG VARS #####################################################################################
 declare LLTEST_CMD="/app/srcds_run -game gesource +map ge_archives -insecure -norestart +sv_lan 1";
@@ -81,6 +79,13 @@ command -v awk > /dev/null 2>&1 || echo "awk is missing";
 command -v md5sum > /dev/null 2>&1 || echo "md5sum is missing";
 command -v sleep > /dev/null 2>&1 || echo "sleep is missing";
 command -v tmux > /dev/null 2>&1 || echo "tmux is missing";
+
+# Check that MALLOC_CHECK_ is set properly
+# MALLOC_CHECK_=0 is required for gesource to run
+if [ "$MALLOC_CHECK_" != "0" ]; then
+    echo "MALLOC_CHECK_ is not set or is not to 0. Verify environment variables."
+    exit 2
+fi
 
 # Prep log file
 : > "$LLTEST_LOGFILE"

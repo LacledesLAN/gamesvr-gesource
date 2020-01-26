@@ -57,6 +57,8 @@ COPY --chown=GESource:root --from=gesource-builder /output/gesource /app/gesourc
 
 COPY --chown=GESource:root ./ll-tests /app/ll-tests
 
+ENV MALLOC_CHECK_=0
+
 RUN chmod +x /app/ll-tests/*.sh
 
 USER GESource
