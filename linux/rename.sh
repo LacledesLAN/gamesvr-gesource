@@ -5,7 +5,6 @@ IFS='
 set -f
 
 rename_directory () {
-  echo "$1"
   for d in $(find "$1" -maxdepth 1 -type d -not -path "$1");
   do
     local upper=`echo "$d" | tr "[:lower:]" "[:upper:]"`
