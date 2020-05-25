@@ -1,10 +1,17 @@
 #!/bin/bash
 
-IFS='
-'
+# This shell script ensures assets have been sanitized the Linux environment.
+# For details see PR #3 (https://github.com/LacledesLAN/gamesvr-gesource/pull/3).
+
+dos2unix /output/gesource/*.txt
+
+######
+
+IFS=$'\n'
+
 set -f
 
-rename_directory () {
+uppercase_directories () {
   for d in $(find "$1" -maxdepth 1 -type d -not -path "$1");
   do
     local upper=`echo "$d" | tr "[:lower:]" "[:upper:]"`
@@ -12,11 +19,11 @@ rename_directory () {
     then
       mv "$d" "$upper"
     fi
-    rename_directory "$upper"
+    uppercase_directories "$upper"
   done
 }
 
-rename_files () {
+uppercase_files () {
   for f in $(find . -type f);
   do
     local path=`echo "${f%.*}" | tr "[:lower:]" "[:upper:]"`
@@ -29,9 +36,9 @@ rename_files () {
 }
 
 cd /output/gesource/materials
-rename_directory "./"
-rename_files
+uppercase_directories "./"
+uppercase_files
 
 cd /output/srcds2007/hl2/materials
-rename_directory "./"
-rename_files
+uppercase_directories "./"
+uppercase_files
