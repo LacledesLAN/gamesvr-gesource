@@ -20,6 +20,14 @@ RUN echo "Downloading GoldenEye Source from LL public ftp server" &&`
 # Download Source 2007 Dedicated Server
 RUN /app/steamcmd.sh +login anonymous +force_install_dir /output/srcds2007 +app_update 310 validate +quit;
 
+COPY ./rename.sh /rename.sh
+
+RUN chmod +x /rename.sh && /rename.sh
+
+WORKDIR /output/gesource
+
+RUN apt-get update && apt-get install -y dos2unix && dos2unix *.txt && apt-get remove -y dos2unix && apt-get clean
+
 #=======================================================================
 FROM debian:stretch-slim
 
