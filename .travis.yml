@@ -11,13 +11,13 @@ services:
   - docker
 
 before_install:
-  - docker pull debian:stable-slim
+  - docker pull debian:stretch-slim
   - docker pull lacledeslan/steamcmd:linux
 
 script:
   - docker version
-  - docker build --no-cache --tag lltest/gamesvr-gesource --tag lacledeslan/gamesvr-gesource --build-arg BUILDNODE=TravisCI --build-arg SOURCE_COMMIT="$TRAVIS_COMMIT" ./linux
-  - docker run -it --rm lltest/gamesvr-gesource ./ll-tests/gamesvr-gesource.sh
+  - docker build --no-cache --tag lacledeslan/gamesvr-gesource:latest --tag lacledeslan/gamesvr-gesource:5.0.6 --build-arg BUILDNODE=TravisCI --build-arg SOURCE_COMMIT="$TRAVIS_COMMIT" ./linux
+  - docker run -it --rm lacledeslan/gamesvr-gesource:latest ./ll-tests/gamesvr-gesource.sh
 
 notifications:
   slack:
@@ -26,10 +26,14 @@ notifications:
 before_deploy:
   - echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin;
 deploy:
-  provider: script
-  script: docker push lacledeslan/gamesvr-gesource
-  on:
-    branch: master
+  - provider: script
+    script: docker push lacledeslan/gamesvr-gesource:latest
+    on:
+      branch: master
+  - provider: script
+    script: docker push lacledeslan/gamesvr-gesource:5.0.6
+    on:
+      branch: master
 after_deploy:
  - curl -X POST https://hooks.microbadger.com/images/lacledeslan/gamesvr-gesource/$MICROBADGER_TOKEN
  - sh ./.travis/trigger-travis.sh LacledesLAN gamesvr-gesource-freeplay $TRAVIS_ACCESS_TOKEN
