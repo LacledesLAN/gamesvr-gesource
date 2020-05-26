@@ -158,6 +158,8 @@ should_lack 'Server restart in 10 seconds' 'Server is not boot-looping';
 should_lack 'Running the dedicated server as root' 'Server is not running under root';
 should_have 'Game.dll loaded for "GoldenEye: Source"' 'srcds_run loaded GoldenEye Source';
 should_lack 'map load failed:' 'Server was able to load a map';
+should_lack 'Failed to load $include VMT file (materials/GOLDENEYE/' 'No failures to include VMT assets';
+should_lack "Invalid scenario '' included in gameplay cycle file. Ignored." 'No EOL issues in mapcycles';
 
 # Verify server responds to commands
 should_echo "say STARTING COMMAND TESTS" 'Console: STARTING COMMAND TESTS';
