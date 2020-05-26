@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This shell script ensures assets have been sanitized the Linux environment.
+# This shell script ensures assets have been sanitized for the Linux environment.
 # For details see PR #3 (https://github.com/LacledesLAN/gamesvr-gesource/pull/3).
 
 dos2unix /output/gesource/*.txt
