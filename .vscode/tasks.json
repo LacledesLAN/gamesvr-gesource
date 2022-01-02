@@ -4,12 +4,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Build Linux Image",
             "type": "shell",
-            "command": "docker pull debian:stable-slim; docker build ./linux -t lltest/gamesvr-gesource --no-cache --build-arg BUILDNODE=$env:computername;",
+            "command": "docker pull debian:stretch-slim; docker build --rm -f linux.Dockerfile -t lltest/gamesvr-gesource --no-cache --build-arg BUILDNODE=$env:computername .;",
             "dependsOn": "download-sub-modules",
             "group": "build",
-            "identifier": "build-image",
             "problemMatcher": [],
             "promptOnClose": true
         },
@@ -17,7 +16,7 @@
             "label": "Build & Execute Self Tests",
             "type": "shell",
             "command": "docker run -it --rm lltest/gamesvr-gesource ./ll-tests/gamesvr-gesource.sh;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -29,7 +28,7 @@
             "label": "Build & Run Interactive Server",
             "type": "shell",
             "command": "docker run -it -p 27015:27015/tcp -p 27015:27015/udp lltest/gamesvr-gesource /bin/bash /app/srcds_run -game gesource +map ge_caves -insecure -norestart +sv_lan 1 +rcon_password test123",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": "build",
             "problemMatcher": [],
             "promptOnClose": true
@@ -38,7 +37,7 @@
             "label": "Build & Shell In",
             "type": "shell",
             "command": "docker run -it -p 27015:27015/tcp -p 27015:27015/udp --rm lltest/gamesvr-gesource;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build Linux Image",
             "group": "build",
             "problemMatcher": [],
             "promptOnClose": true

@@ -1,6 +1,5 @@
-linux/build-cache/**
-!linux/build-cache/readme.md
-
+!build-cache/**
+!build-cache/.gitkeep
 
 ### VisualStudioCode ###
 .vscode/*
@@ -40,3 +39,4 @@ linux/build-cache/**
 ehthumbs.db
 ehthumbs_vista.db
 Thumbs.db
+
