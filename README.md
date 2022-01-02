@@ -8,8 +8,7 @@ This repository is maintained by [Laclede's LAN](https://lacledeslan.com). Its c
 
 ## Linux Container
 
-[![Build Status](https://travis-ci.org/LacledesLAN/gamesvr-gesource.svg?branch=master)](https://travis-ci.org/LacledesLAN/gamesvr-gesource)
-[![](https://images.microbadger.com/badges/image/lacledeslan/gamesvr-gesource.svg)](https://microbadger.com/images/lacledeslan/gamesvr-gesource "Get your own image badge on microbadger.com")
+[![linux/amd64](https://github.com/LacledesLAN/gamesvr-gesource/actions/workflows/build-linux-image.yml/badge.svg?branch=master)](https://github.com/LacledesLAN/gamesvr-gesource/actions/workflows/build-linux-image.yml)
 
 ### Download
 
