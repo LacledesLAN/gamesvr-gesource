@@ -12,9 +12,9 @@ IFS=$'\n'
 set -f
 
 uppercase_directories () {
-  for d in $(find "$1" -maxdepth 1 -type d -not -path "$1");
+  find "$1" -maxdepth 1 -type d -not -path "$1" | while IFS= read -r d;
   do
-    local upper=`echo "$d" | tr "[:lower:]" "[:upper:]"`
+    local upper=$(echo "$d" | tr "[:lower:]" "[:upper:]")
     if [ ! "$d" == "$upper" ]
     then
       mv "$d" "$upper"
@@ -24,9 +24,9 @@ uppercase_directories () {
 }
 
 uppercase_files () {
-  for f in $(find . -type f);
+  find . -type f | while IFS= read -r f;
   do
-    local path=`echo "${f%.*}" | tr "[:lower:]" "[:upper:]"`
+    local path=$(echo "${f%.*}" | tr "[:lower:]" "[:upper:]")
     local extension="${f##*.}"
     if [ ! "$f" == "$path.$extension" ]
     then
@@ -35,10 +35,10 @@ uppercase_files () {
   done
 }
 
-cd /output/gesource/materials
+cd /output/gesource/materials || exit 1
 uppercase_directories "./"
 uppercase_files
 
-cd /output/srcds2007/hl2/materials
+cd /output/srcds2007/hl2/materials || exit 1
 uppercase_directories "./"
 uppercase_files

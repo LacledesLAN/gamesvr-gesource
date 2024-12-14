@@ -2,7 +2,7 @@
 
 #####################################################################################################
 ### CONFIG VARS #####################################################################################
-declare LLTEST_CMD="/app/srcds_run -game gesource +map ge_archives -insecure -norestart +sv_lan 1";
+declare LLTEST_CMD="/app/srcds_run -debug -game gesource +map ge_archives -insecure -norestart +sv_lan 1";
 declare LLTEST_NAME="gamesvr-gesource-$(date '+%H%M%S')";
 #####################################################################################################
 #####################################################################################################

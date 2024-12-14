@@ -6,7 +6,7 @@
         {
             "label": "Build Linux Image",
             "type": "shell",
-            "command": "docker pull debian:stretch-slim; docker build --rm -f linux.Dockerfile -t lltest/gamesvr-gesource --no-cache --build-arg BUILDNODE=$env:computername .;",
+            "command": "docker pull debian:bookworm-slim; docker build --rm -f linux.Dockerfile -t lltest/gamesvr-gesource --no-cache --build-arg BUILDNODE=$env:computername .;",
             "dependsOn": "download-sub-modules",
             "group": "build",
             "problemMatcher": [],
